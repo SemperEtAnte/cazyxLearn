@@ -1,0 +1,53 @@
+buildscript {
+    ext {
+        springBootVersion = '2.7.4'
+    }
+}
+
+plugins {
+    id 'java'
+    id "org.springframework.boot" version("${springBootVersion}")
+}
+apply plugin: 'org.springframework.boot'
+group = 'ru.cazyx.semperante'
+version = '1.0'
+
+apply plugin: 'java'
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+
+    }
+}
+dependencies {
+    implementation 'io.swagger.core.v3:swagger-core:2.2.3'
+    implementation 'io.swagger.core.v3:swagger-annotations:2.2.3'
+    implementation 'io.swagger.core.v3:swagger-models:2.2.3'
+    implementation 'com.auth0:java-jwt:4.0.0'
+    implementation 'com.vladmihalcea:hibernate-types-52:2.19.2'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.4'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
+    implementation "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+    implementation 'org.flywaydb:flyway-core:9.4.0'
+    implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit:3.2.5'
+    implementation 'jakarta.validation:jakarta.validation-api:2.0.2'
+    implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+    runtimeOnly 'org.postgresql:postgresql:42.5.0'
+    compileOnly 'org.jetbrains:annotations:23.0.0'
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+    testImplementation 'org.springframework.security:spring-security-test:5.7.3'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
