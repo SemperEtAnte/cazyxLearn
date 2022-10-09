@@ -1,47 +1,42 @@
 spring:
-  jpa:
-    database: postgresql
-    show-sql: true
-    hibernate:
-      ddl-auto: none
-    properties:
+  jpa: #Блок настроек JPA
+    database: postgresql #Тип БД
+    show-sql: true #Вывод запросов в консоль
+    hibernate: #Настройка Hibernate
+      ddl-auto: none #Отключаем автоматическую генерацию таблиц (у нас миграции flyway)
+    properties: #Дополнительные настройки
       hibernate:
-        order_inserts: true
-        generate_statistics: false
-        order_updates: true
+        order_inserts: true # Включает batch запросы на INSERT
+        generate_statistics: false # Не генерировать статистику запросов в БД
+        order_updates: true # Включает batch запросы на UPDATE
         jdbc:
-          batch_size: 100
-        cache:
+          batch_size: 100 #Максимальный размер строк в batch запросах
+        cache: #Отключаем кэш запросов (можно и не выключать...)
           use_query_cache: false
           use_second_level_cache: false
           use_structured_entries: false
           use_minimal_puts: false
-  flyway:
-    baseline-on-migrate: true
-    enabled: true
-  datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    username: semperante
-    password: Sadmin
-    url: "jdbc:postgresql://localhost/learn_db?reWriteBatchedInserts=true"
-    hikari:
-      driver-class-name: org.postgresql.Driver
-      maximum-pool-size: 5
-      idle-timeout: 30000
-      max-lifetime: 30000
-  servlet:
-    multipart:
-      max-file-size: 100MB
-springdoc:
+  flyway: #Настройки flyway миграцией
+    enabled: true #Включены
+    baseline-on-migrate: true #Показывать вывод миграций
+  datasource: #Настройки подключения к БД
+    type: com.zaxxer.hikari.HikariDataSource #Как тип используем Hikari Connection Pool
+    username: semperante #Логин от БД
+    password: Sadmin #Пароль от БД
+    url: "jdbc:postgresql://localhost/learn_db?reWriteBatchedInserts=true" #Ссылка для доступа в БД
+    hikari: #Настройки HikariCP
+      driver-class-name: org.postgresql.Driver #Драйвер. Полный класс (постгрес в нашем случае)
+      maximum-pool-size: 5 #Максимальное количество подключений (лучше задавать больше для многоядерных систем)
+      idle-timeout: 30000 #Таймаут "простаивающего" подключения
+      max-lifetime: 30000 #Максимальная жизнь подключений. Оба параметра лучше синхронизировать с настройкой БД
+springdoc: #Настройки документации
   api-docs:
-    enabled: true
-    path: /api-docs-op
+    enabled: true #Включена
+    path: /api-docs-op #Путь для OpenAPI
   swagger-ui:
-    path: /api-docs
-    operationsSorter: method
+    path: /api-docs #Путь для сваггера
+    operationsSorter: method #Сортировка роутов по методу (DELETE, GET, ...)
 server:
-  error:
-    include-message: always
-    include-stacktrace: never
-  tomcat:
-    max-swallow-size: -1
+  error: #Настройка ошибок отправляемых на фронт
+    include-message: always #Всегда отправлять сообщение
+    include-stacktrace: never #Никогда не отправлять stack-trace

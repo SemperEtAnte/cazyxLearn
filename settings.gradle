@@ -1,13 +1,12 @@
+//Указываем репозитории откуда брать плагины. Опять же для избежания jcenter
 pluginManagement {
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
     }
-
 }
-
-
+//Имя нашего проекта (будет использоваться как имя результирующего jar в нашем случае)
 rootProject.name = 'learnProject'
 
 
