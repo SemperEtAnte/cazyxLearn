@@ -21,9 +21,9 @@ spring:
     baseline-on-migrate: true #Показывать вывод миграций
   datasource: #Настройки подключения к БД
     type: com.zaxxer.hikari.HikariDataSource #Как тип используем Hikari Connection Pool
-    username: semperante #Логин от БД
-    password: Sadmin #Пароль от БД
-    url: "jdbc:postgresql://localhost/learn_db?reWriteBatchedInserts=true" #Ссылка для доступа в БД
+    username: postgres #Логин от БД
+    password: 270399tdrxbgfq #Пароль от БД
+    url: "jdbc:postgresql://localhost/test-db?reWriteBatchedInserts=true" #Ссылка для доступа в БД
     hikari: #Настройки HikariCP
       driver-class-name: org.postgresql.Driver #Драйвер. Полный класс (постгрес в нашем случае)
       maximum-pool-size: 5 #Максимальное количество подключений (лучше задавать больше для многоядерных систем)
