@@ -23,7 +23,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource #Как тип используем Hikari Connection Pool
     username: postgres #Логин от БД
     password: 270399tdrxbgfq #Пароль от БД
-    url: "jdbc:postgresql://localhost/main_db?reWriteBatchedInserts=true" #Ссылка для доступа в БД
+    url: "jdbc:postgresql://localhost/test_db?reWriteBatchedInserts=true" #Ссылка для доступа в БД
     hikari: #Настройки HikariCP
       driver-class-name: org.postgresql.Driver #Драйвер. Полный класс (постгрес в нашем случае)
       maximum-pool-size: 5 #Максимальное количество подключений (лучше задавать больше для многоядерных систем)
